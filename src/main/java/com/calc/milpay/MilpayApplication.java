@@ -14,13 +14,27 @@ public class MilpayApplication {
 		SpringApplication.run(MilpayApplication.class, args);
 	}
 
-	@GetMapping("/hello")
+	/*@GetMapping("/hello")
 	public String sayHello(@RequestParam(value = "myName", defaultValue = "World") String name) {
 		return String.format("Hello %s!", name);
+	}*/
+
+	@GetMapping("/api/hello")
+	public MilpayApplication.HelloMessage hello() {
+		return new MilpayApplication.HelloMessage("Hello, World!");
 	}
 
-	@GetMapping("/")
-	public String index() {
-		return "index";
+	private static class HelloMessage {
+
+		private String message;
+
+		public HelloMessage(String message) {
+			this.message = message;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
 	}
 }
